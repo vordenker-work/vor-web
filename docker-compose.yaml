@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    container_name: vor-web
+    restart: always
+    environment:
+      - BACKEND_UPSTREAM=${BACKEND_UPSTREAM:-http://host.docker.internal:8000}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8081:80"
